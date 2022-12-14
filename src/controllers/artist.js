@@ -1,6 +1,6 @@
 const db = require('../db/index')
 
-exports.createArtist = async (req, res) => {
+exports.create = async (req, res) => {
   const { name, genre } = req.body
 
   try {
