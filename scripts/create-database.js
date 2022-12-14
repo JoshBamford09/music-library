@@ -9,17 +9,16 @@ const envName = process.argv.slice(2)[0]
 
 const loadEnv = (envName) => {
   const { NODE_ENV } = process.env
+  // eslint-disable-next-line eqeqeq
   if (NODE_ENV != 'production') {
-  
     const envFile = envName === 'test' ? '../.env.test' : '../.env'
-    
     require('dotenv').config({
-      path: path.join(__dirname, envFile),
+      path: path.join(__dirname, envFile)
     })
-  
+
     // capture the name of the database so we can create it
     const databaseName = process.env.PGDATABASE
-  
+
     // remove the name of the database from the environment, so pg doesn't try to connect to a db which doesn't exist yet
     delete process.env.PGDATABASE
 
@@ -32,21 +31,20 @@ const createDatabase = async (databaseName) => {
   const client = new Client()
   try {
     await client.connect()
-  
+
     console.log(`Creating ${databaseName} database...`)
-  
+
     await client.query(`CREATE DATABASE ${databaseName}`)
-  
+
     console.log('Database created!')
   } catch (err) {
-
     switch (err.code) {
     // this is the postgres error code for when a database already exists. You could store this in a constant to make the code more readable
-    case "42P04":
-      console.log('Database already exists!')
-      break
-    default:
-      console.log(err)
+      case '42P04':
+        console.log('Database already exists!')
+        break
+      default:
+        console.log(err)
     }
   } finally {
     client.end()
