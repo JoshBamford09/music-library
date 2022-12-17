@@ -10,3 +10,11 @@ exports.create = async (req, res) => {
     res.status(500).json(err.message)
   }
 }
+exports.getAllArtists = async (req, res) => {
+  try {
+    const { rows } = await db.query('SELECT * FROM Artists')
+    res.status(200).json(rows)
+  } catch (err) {
+    res.status(500).json(err.message)
+  }
+}

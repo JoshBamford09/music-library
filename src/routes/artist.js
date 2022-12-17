@@ -5,4 +5,6 @@ const router = express.Router()
 
 router.post('/', artistController.create)
 
+router.get('/', artistController.getAllArtists)
+
 module.exports = router
