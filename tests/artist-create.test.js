@@ -4,7 +4,7 @@ const db = require('../src/db/index')
 const app = require('../src/app')
 
 describe('create artist', () => {
-  describe('/artist', () => {
+  describe('/artists', () => {
     describe('POST', () => {
       it('creates a new artist in the database', async () => {
         const { status, body } = await request(app).post('/artists').send({
