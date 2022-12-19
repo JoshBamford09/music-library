@@ -7,4 +7,6 @@ router.post('/', artistController.create)
 
 router.get('/', artistController.getAllArtists)
 
+router.get('/:id', artistController.getSpecificArtist)
+
 module.exports = router
