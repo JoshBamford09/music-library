@@ -11,4 +11,6 @@ router.get('/:id', artistController.getSpecificArtist)
 
 router.patch('/:id', artistController.updateArtist)
 
+router.delete('/:id', artistController.deleteArtist)
+
 module.exports = router
