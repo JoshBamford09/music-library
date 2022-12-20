@@ -1,6 +1,6 @@
 const { expect } = require('chai')
 const request = require('supertest')
-const db = require('../src/db')
+const db = require('../src/db/index')
 const app = require('../src/app')
 
 describe('Read Artists', () => {
@@ -9,16 +9,16 @@ describe('Read Artists', () => {
     const responses = await Promise.all([
       db.query('INSERT INTO Artists (name, genre) VALUES( $1, $2) RETURNING *', [
         'Tame Impala',
-        'rock',
+        'rock'
       ]),
       db.query('INSERT INTO Artists (name, genre) VALUES( $1, $2) RETURNING *', [
         'Kylie Minogue',
-        'pop',
+        'pop'
       ]),
       db.query('INSERT INTO Artists (name, genre) VALUES( $1, $2) RETURNING *', [
         'Tame Antelope',
-        'jazz',
-      ]),
+        'jazz'
+      ])
     ])
 
     artists = responses.map(({ rows }) => rows[0])

@@ -9,4 +9,6 @@ router.get('/', artistController.getAllArtists)
 
 router.get('/:id', artistController.getSpecificArtist)
 
+router.patch('/:id', artistController.updateArtist)
+
 module.exports = router
